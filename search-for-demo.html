@@ -9,11 +9,11 @@ var xmlDocument = new ActiveXObject("Microsoft.XMLDOM");
 xmlDocument.load( "faculty.xml" );
 
 var element = xmlDocument.documentElement;
-//////////////////////////////////
-// ÀÌ¸§À¸·Î °Ë»öÇÒ °æ¿ì
+
+// ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰í•  ê²½ìš°
 function OnSearch1()
 {   
-   // ÀÌ¸§À» ÀÔ·ÂÇÑ °æ¿ì
+   // ì´ë¦„ì„ ì…ë ¥í•œ ê²½ìš°
    if (Name.value != "") {
       var userInput = Name.value;
       var loopIndex = 0;
@@ -21,8 +21,8 @@ function OnSearch1()
                   
       while (loopIndex < element.childNodes.length) {
          var professorNode = element.childNodes.item(loopIndex);
-         var pname = professorNode.firstChild;  // NAME ³ëµå
-         var pvalue = pname.firstChild;         // NAME ³ëµå°ª
+         var pname = professorNode.firstChild;  // NAME ë…¸ë“œ
+         var pvalue = pname.firstChild;         // NAME ë…¸ë“œê°’
       
          if ( userInput != pvalue.nodeValue) {
             loopIndex++;
@@ -32,18 +32,18 @@ function OnSearch1()
             loopIndex++;
          }
       }
-      // ¾ø´Â ÀÌ¸§ ÀÔ·ÂÇÑ °æ¿ì
+      // ì—†ëŠ” ì´ë¦„ ì…ë ¥í•œ ê²½ìš°
       if (loopIndex == count) {
-         alert("±×·± »ç¶÷ ¾ø´Âµğ...");
+         alert("ê·¸ëŸ° ì‚¬ëŒ ì—†ëŠ”ë””...");
       }
-      // ÀÌ¸§À» Ã£Àº °æ¿ì
+      // ì´ë¦„ì„ ì°¾ì€ ê²½ìš°
       else {
          display_found_items(userInput);
       }
    }
-   // ÀÌ¸§À» ÀÔ·ÂÇÏÁö ¾ÊÀº °æ¿ì
+   // ì´ë¦„ì„ ì…ë ¥í•˜ì§€ ì•Šì€ ê²½ìš°
    else {
-      alert("¸»À» ÇØ¾ßÁö, ÀÌ»ç¶÷¾Æ!");
+      alert("ë§ì„ í•´ì•¼ì§€, ì´ì‚¬ëŒì•„!");
    }
 } 
 
@@ -53,23 +53,23 @@ function display_found_items(userInput)
    
    for ( i = 0; i < element.childNodes.length; i++ ) {
       var professorNode = element.childNodes.item(i);
-      var pname = professorNode.firstChild;  // NAME ³ëµå
-      var pvalue = pname.firstChild;         // NAME ³ëµå°ª
+      var pname = professorNode.firstChild;  // NAME ë…¸ë“œ
+      var pvalue = pname.firstChild;         // NAME ë…¸ë“œê°’
 
       if ( userInput == pvalue.nodeValue ) {
          document.writeln( "<table border=1 width=80% align=center>" );
 
-         // PROFESSOR ¿¤¸®¸ÕÆ®ÀÇ ¸ğµç ÀÚ½Ä³ëµå¸¦ Å½»ö
+         // PROFESSOR ì—˜ë¦¬ë¨¼íŠ¸ì˜ ëª¨ë“  ìì‹ë…¸ë“œë¥¼ íƒìƒ‰
          for ( j = 0; j < professorNode.childNodes.length; j++ ) {
             var value1 = professorNode.childNodes.item(j);
             var value2 = value1.firstChild;
        
             document.writeln( "<tr>" );
-            // °¢ ÀÚ½Ä³ëµåÀÇ ³ëµåÀÌ¸§ Ãâ·Â
+            // ê° ìì‹ë…¸ë“œì˜ ë…¸ë“œì´ë¦„ ì¶œë ¥
             document.writeln( "<td align='center'><strong>" + value1.nodeName
                + "</strong></td>" );
 
-            // ³ëµå°ª ÇÁ¸°Æ®
+            // ë…¸ë“œê°’ í”„ë¦°íŠ¸
             document.writeln( "<td>" + value2.nodeValue + "</td>" );
             document.writeln( "</tr>" );
          }
@@ -81,7 +81,7 @@ function display_found_items(userInput)
 
 function OnSearch2()
 {   
-   // Àü°øºĞ¾ß·Î °Ë»öÇÒ °æ¿ì
+   // ì „ê³µë¶„ì•¼ë¡œ ê²€ìƒ‰í•  ê²½ìš°
    if (FieldName.value != "")
    {
       var userInput = FieldName.value;
@@ -90,23 +90,23 @@ function OnSearch2()
             
       for ( i = 0; i < element.childNodes.length; i++ ) {
          var professorNode = element.childNodes.item(i);
-         var fname = professorNode.childNodes.item(3);  // Major Field ³ëµå
-         var fvalue = fname.firstChild;     // Major Field ³ëµå°ª
+         var fname = professorNode.childNodes.item(3);  // Major Field ë…¸ë“œ
+         var fvalue = fname.firstChild;     // Major Field ë…¸ë“œê°’
 
          if ( userInput == fvalue.nodeValue ) {
             document.writeln( "<table border=1 width=80% align=center>" );
 
-            // PROFESSOR ¿¤¸®¸ÕÆ®ÀÇ ¸ğµç ÀÚ½Ä³ëµå¸¦ Å½»ö
+            // PROFESSOR ì—˜ë¦¬ë¨¼íŠ¸ì˜ ëª¨ë“  ìì‹ë…¸ë“œë¥¼ íƒìƒ‰
             for ( j = 0; j < professorNode.childNodes.length; j++ ) {
                var value1 = professorNode.childNodes.item(j);
                var value2 = value1.firstChild;
        
                document.writeln( "<tr>" );
-               // °¢ ÀÚ½Ä³ëµåÀÇ ³ëµåÀÌ¸§ Ãâ·Â
+               // ê° ìì‹ë…¸ë“œì˜ ë…¸ë“œì´ë¦„ ì¶œë ¥
                document.writeln( "<td align='center'><strong>" + value1.nodeName
                   + "</strong></td>" );
 
-               // ³ëµå°ª ÇÁ¸°Æ®
+               // ë…¸ë“œê°’ í”„ë¦°íŠ¸
                document.writeln( "<td>" + value2.nodeValue + "</td>" );
                document.writeln( "</tr>" );
             }
@@ -123,7 +123,7 @@ function OnSearch2()
 </script>
 
 
-<title>JavaScript¸¦ ÀÌ¿ëÇÑ ÀÌ·Â¼­ °Ë»ö ÆäÀÌÁö</title>
+<title>JavaScriptë¥¼ ì´ìš©í•œ ì´ë ¥ì„œ ê²€ìƒ‰ í˜ì´ì§€</title>
 
 </head>
 
@@ -137,7 +137,7 @@ function OnSearch2()
 
 <table border="0" width="60%">
   <tr>
-    <td width="40%" align="right"><b>ÀÌ¸§:</b></td>
+    <td width="40%" align="right"><b>ì´ë¦„:</b></td>
     <td width="60%"><input TYPE="TEXT" NAME="Name"></td>
     <td align="left"><input TYPE="button" VALUE="Search" ONCLICK="OnSearch1()"></td>
   <tr>
@@ -148,7 +148,7 @@ function OnSearch2()
 
 <table border="0" width="60%">
   <tr>
-    <td width="40%"><p align="right"><b>Àü°øºĞ¾ß:</b></p></td>
+    <td width="40%"><p align="right"><b>ì „ê³µë¶„ì•¼:</b></p></td>
     <td width="60%"><input TYPE="TEXT" NAME="FieldName"></td>
     <td align="left"><input TYPE="button" VALUE="Search" ONCLICK="OnSearch2()"></td>
   </tr>
