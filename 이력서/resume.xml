@@ -1,0 +1,124 @@
+<?xml version="1.0"  encoding="euc-kr" ?>
+<?xml-stylesheet type="text/xsl" href="resume.xsl"?>
+<!-- 내부 DTD -->
+<!DOCTYPE book [ 
+<!ELEMENT book (name, id, mypic, birth, adrs, hojuk, history)>
+  <!ELEMENT name (#PCDATA)>
+  <!ELEMENT id    (#PCDATA)>
+    <!ELEMENT mypic (#PCDATA)>
+  <!ELEMENT birth (year, month, day, age)>
+     <!ELEMENT year   (#PCDATA)>
+     <!ELEMENT month (#PCDATA)>
+     <!ELEMENT day    (#PCDATA)>
+     <!ELEMENT age    (#PCDATA)>
+  <!ELEMENT adrs  (#PCDATA)>
+  <!ELEMENT hojuk (rel, hojuname)>
+     <!ELEMENT rel (#PCDATA)>
+     <!ELEMENT hojuname (#PCDATA)>
+  <!ELEMENT history (card)+>
+     <!ELEMENT card (year, month, day, memo,office)>
+        <!ELEMENT memo (#PCDATA)>
+        <!ELEMENT office (#PCDATA)> 
+]>
+
+<book>
+  <name>하 리 수</name>
+  <id>781123-1234567</id>
+  <mypic>harisu.jpg</mypic>
+  <birth>
+     <year>1980</year>
+     <month>11</month>
+     <day>23</day>
+     <age>21</age>
+  </birth>
+  <adrs>서울시 강남구논현동 보통연립 가-201호 (Tel. 02-123-4567)</adrs>
+  
+  <hojuk>
+     <rel>장남</rel>
+     <hojuname>하 대 감</hojuname>
+  </hojuk>
+  
+  <history>
+    <card>
+       <year>1990</year>
+       <month>03</month>
+       <day>02</day>
+       <memo>한국 고등학교 입학</memo>
+       <office>고등학교장</office>
+    </card>
+    
+    <card>
+       <year>1993</year>
+       <month>02</month>
+       <day>10</day>
+       <memo>한국 고등학교 졸업</memo>
+       <office>고등학교장</office>
+    </card>
+
+    <card>
+       <year>1993</year>
+       <month>03</month>
+       <day>02</day>
+       <memo>한국대학교 전자계산학과 입학</memo>
+       <office>대학총장</office>
+    </card>
+
+    <card>
+       <year>1993</year>
+       <month>06</month>
+       <day>25</day>
+       <memo>워드프로세서 1급 자격증 취득</memo>
+       <office>상공회의소</office>
+    </card>
+
+    <card>
+       <year>1994</year>
+       <month>04</month>
+       <day>15</day>
+       <memo>컴퓨터활용능력 1급 자격증 취득</memo>
+       <office>상공회의소</office>
+    </card>
+
+    <card>
+       <year>1995</year>
+       <month>05</month>
+       <day>05</day>
+       <memo>전국 대학생 소프트웨어 공모전 2등 수상</memo>
+       <office>대학연합회</office>
+    </card>
+
+    <card>
+       <year>1997</year>
+       <month>02</month>
+       <day>15</day>
+       <memo>한국대학교 전자계산학과 졸업</memo>
+       <office>대학총장</office>
+    </card>
+
+    <card>
+       <year>1997</year>
+       <month>04</month>
+       <day>25</day>
+       <memo>논산훈련소 입대</memo>
+       <office>병무청</office>
+    </card>
+
+    <card>
+       <year>1999</year>
+       <month>05</month>
+       <day>25</day>
+       <memo>육군 전역</memo>
+       <office>병무청</office>
+    </card>
+
+    <card>
+       <year>1999</year>
+       <month>09</month>
+       <day>01</day>
+       <memo>한국 전자(주) 인사과 입사</memo>
+       <office>사장</office>
+    </card>
+
+  </history>
+</book>
+

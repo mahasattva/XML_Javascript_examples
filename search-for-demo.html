@@ -1,0 +1,163 @@
+<html>
+
+<head>
+
+<script type="text/javascript" language="JavaScript">
+
+var xmlDocument = new ActiveXObject("Microsoft.XMLDOM");
+
+xmlDocument.load( "faculty.xml" );
+
+var element = xmlDocument.documentElement;
+
+// 이름으로 검색할 경우
+function OnSearch1()
+{   
+   // 이름을 입력한 경우
+   if (Name.value != "") {
+      var userInput = Name.value;
+      var loopIndex = 0;
+      var count = 0;
+                  
+      while (loopIndex < element.childNodes.length) {
+         var professorNode = element.childNodes.item(loopIndex);
+         var pname = professorNode.firstChild;  // NAME 노드
+         var pvalue = pname.firstChild;         // NAME 노드값
+      
+         if ( userInput != pvalue.nodeValue) {
+            loopIndex++;
+            count++;
+         }
+         else {
+            loopIndex++;
+         }
+      }
+      // 없는 이름 입력한 경우
+      if (loopIndex == count) {
+         alert("그런 사람 없는디...");
+      }
+      // 이름을 찾은 경우
+      else {
+         display_found_items(userInput);
+      }
+   }
+   // 이름을 입력하지 않은 경우
+   else {
+      alert("말을 해야지, 이사람아!");
+   }
+} 
+
+function display_found_items(userInput)
+{
+   document.writeln("<html><body>");
+   
+   for ( i = 0; i < element.childNodes.length; i++ ) {
+      var professorNode = element.childNodes.item(i);
+      var pname = professorNode.firstChild;  // NAME 노드
+      var pvalue = pname.firstChild;         // NAME 노드값
+
+      if ( userInput == pvalue.nodeValue ) {
+         document.writeln( "<table border=1 width=80% align=center>" );
+
+         // PROFESSOR 엘리먼트의 모든 자식노드를 탐색
+         for ( j = 0; j < professorNode.childNodes.length; j++ ) {
+            var value1 = professorNode.childNodes.item(j);
+            var value2 = value1.firstChild;
+       
+            document.writeln( "<tr>" );
+            // 각 자식노드의 노드이름 출력
+            document.writeln( "<td align='center'><strong>" + value1.nodeName
+               + "</strong></td>" );
+
+            // 노드값 프린트
+            document.writeln( "<td>" + value2.nodeValue + "</td>" );
+            document.writeln( "</tr>" );
+         }
+         document.writeln( "</table> <p>" );
+      }
+   }
+   document.writeln("</body></html>");
+}
+
+function OnSearch2()
+{   
+   // 전공분야로 검색할 경우
+   if (FieldName.value != "")
+   {
+      var userInput = FieldName.value;
+            
+      document.writeln("<html><body>");
+            
+      for ( i = 0; i < element.childNodes.length; i++ ) {
+         var professorNode = element.childNodes.item(i);
+         var fname = professorNode.childNodes.item(3);  // Major Field 노드
+         var fvalue = fname.firstChild;     // Major Field 노드값
+
+         if ( userInput == fvalue.nodeValue ) {
+            document.writeln( "<table border=1 width=80% align=center>" );
+
+            // PROFESSOR 엘리먼트의 모든 자식노드를 탐색
+            for ( j = 0; j < professorNode.childNodes.length; j++ ) {
+               var value1 = professorNode.childNodes.item(j);
+               var value2 = value1.firstChild;
+       
+               document.writeln( "<tr>" );
+               // 각 자식노드의 노드이름 출력
+               document.writeln( "<td align='center'><strong>" + value1.nodeName
+                  + "</strong></td>" );
+
+               // 노드값 프린트
+               document.writeln( "<td>" + value2.nodeValue + "</td>" );
+               document.writeln( "</tr>" );
+            }
+            document.writeln( "</table> <p>" );
+         }
+      }
+      document.writeln("</body></html>");
+   }
+   else {
+      alert("Error! No Input Received");
+   }
+}
+
+</script>
+
+
+<title>JavaScript를 이용한 이력서 검색 페이지</title>
+
+</head>
+
+
+<body>
+
+<center><img src="javascript.bmp"></center>
+
+<br><br>
+<p><img src="name.bmp"></p>
+
+<table border="0" width="60%">
+  <tr>
+    <td width="40%" align="right"><b>이름:</b></td>
+    <td width="60%"><input TYPE="TEXT" NAME="Name"></td>
+    <td align="left"><input TYPE="button" VALUE="Search" ONCLICK="OnSearch1()"></td>
+  <tr>
+</table>
+
+<br>
+<p><img src="field.bmp"></p>
+
+<table border="0" width="60%">
+  <tr>
+    <td width="40%"><p align="right"><b>전공분야:</b></p></td>
+    <td width="60%"><input TYPE="TEXT" NAME="FieldName"></td>
+    <td align="left"><input TYPE="button" VALUE="Search" ONCLICK="OnSearch2()"></td>
+  </tr>
+</table>
+
+<br>
+<br>
+<h3 align="center"><font face="Times New Roman"> Copyright (C) 2015 by James Lee<br>
+All Rights Reserved.</font></h3>
+
+</body>
+</html>
